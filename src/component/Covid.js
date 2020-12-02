@@ -1,10 +1,13 @@
 import React,{useState,useEffect} from 'react'
 import Axios from 'axios'
 import MediaCard from './MediaCard'
+import { Doughnut,Bar,Line } from 'react-chartjs-2';
+import { Grid } from '@material-ui/core';
 export default function Covid() {
- const [confirmed, setConfirmed] = useState()
- const [recovered, setRecovered] = useState()
- const [deaths, setDeaths] = useState()
+ const [confirmed, setConfirmed] = useState(0)
+ const [recovered, setRecovered] = useState(0)
+ const [deaths, setDeaths] = useState(0)
+ const [data, setData] = useState({})
 
  useEffect(() => {
      Axios.get('https://covid19.mathdro.id/api')
@@ -16,11 +19,26 @@ export default function Covid() {
      })
  }, [])
     return (
-        <div>
+        <>
+        <Grid container spacing={3}>
+        <Grid item xs={12} md={4}>
     <MediaCard  text='Confirmed Cases' value ={confirmed} color='mediumPurple' />
     <MediaCard  text='Recovered Cases' value ={recovered} color='green' />
     <MediaCard  text='Death Cases' value ={deaths} color='red' />
-    
-        </div>
+        </Grid>
+        <Grid item xs={12} md={8}>
+            <Bar data={{
+                labels:['conirmed','recovered','deaths'],
+                datasets:[{
+                    label:'people',
+                    backgroundColor:['mediumPurple','green','red'],
+                    data:[confirmed,recovered,deaths]
+                }]
+            }}
+            />
+            </Grid>
+            
+            </Grid>
+    </>
     )
 }
