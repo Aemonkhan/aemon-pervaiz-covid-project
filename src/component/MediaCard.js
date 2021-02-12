@@ -4,7 +4,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import CountUp from 'react-countup';
-import { Grid } from '@material-ui/core';
+
 
 export default function MediaCard({text ,value,color}) {
 console.log(color)
@@ -13,11 +13,6 @@ console.log(value)
   
     <Card className='myCard' style={{backgroundColor:color}}>
       <CardActionArea>
-        {/* <CardMedia
-          className={classes.media}
-          image="/static/images/cards/contemplative-reptile.jpg"
-          title="Contemplative Reptile"
-        /> */}
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {text}
